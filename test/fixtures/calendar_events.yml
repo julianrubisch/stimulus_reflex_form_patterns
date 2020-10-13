@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  occurs_at: 2020-10-13 20:08:30
+  description: MyText
+
+two:
+  occurs_at: 2020-10-13 20:08:30
+  description: MyText

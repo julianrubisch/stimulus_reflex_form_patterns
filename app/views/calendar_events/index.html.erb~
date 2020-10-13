@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Calendar Events</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Occurs at</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @calendar_events.each do |calendar_event| %>
+      <tr>
+        <td><%= calendar_event.occurs_at %></td>
+        <td><%= calendar_event.description %></td>
+        <td><%= link_to 'Show', calendar_event %></td>
+        <td><%= link_to 'Edit', edit_calendar_event_path(calendar_event) %></td>
+        <td><%= link_to 'Destroy', calendar_event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Calendar Event', new_calendar_event_path %>
