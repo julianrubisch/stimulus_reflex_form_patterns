@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_13_193731) do
+ActiveRecord::Schema.define(version: 2020_10_16_094538) do
 
   create_table "calendar_events", force: :cascade do |t|
     t.datetime "occurs_at"
@@ -18,6 +18,12 @@ ActiveRecord::Schema.define(version: 2020_10_13_193731) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "color"
+  end
+
+  create_table "settings", force: :cascade do |t|
+    t.string "holiday_region"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 end

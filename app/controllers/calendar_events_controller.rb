@@ -27,13 +27,6 @@ class CalendarEventsController < ApplicationController
   # POST /calendar_events.json
   def create
     @calendar_event = CalendarEvent.new(calendar_event_params)
-
-    if @calendar_event.save
-      @calendar_events = CalendarEvent.where(occurs_at: @date_range).order(:occurs_at).group_by(&:occurs_at_date)
-      StreamCalendarEventsJob.perform_now(dates: @dates, calendar_events: @calendar_events, date_range: @date_range)
-    else
-      render :index
-    end
   end
 
   # PATCH/PUT /calendar_events/1

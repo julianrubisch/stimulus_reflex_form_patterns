@@ -1,10 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-<div id="calendar-form" data-controller="calendar-events">
-  <%= render "form", calendar_event: @calendar_event %>
+<div class="grid grid-cols-2 w-full">
+  <div id="calendar-form" data-controller="calendar-events">
+    <%= render "form", calendar_event: @calendar_event %>
+  </div>
+  <div id="settings-form" data-controller="settings">
+    <%= form_with(model: Setting.first, method: :put, url: "#", class: "m-8", data: {signed_id: Setting.first.to_sgid.to_s, target: "settings.form"}) do |form| %>
+      <div class="max-w-lg rounded-md shadow-sm sm:max-w-xs">
+        <%= form.label :holiday_region %>
+        <%= form.country_select :holiday_region,
+         {only: Holidays.available_regions.map(&:to_s).map(&:upcase)},
+         class: "form-select block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5",
+         data: {action: "change->settings#submit", reflex_dataset: "combined"} %>
+      </div>
+    <% end %>
+  </div>
+</div>
 </div>
 
-<div class="w-screen p-8">
+<div class="w-screen px-8 py-4">
   <div class="grid grid-cols-7 w-full" id="calendar-grid">
     <%= render partial: 'calendar_events/calendar_grid', locals: {dates: @dates, calendar_events: @calendar_events, date_range: @date_range} %>
   </div> 

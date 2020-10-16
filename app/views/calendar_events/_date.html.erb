@@ -1,6 +1,11 @@
 <div class="flex flex-col justify-between border h-32 p-3 <%= "bg-gray-200" unless date_range.include? date %>">
   <span class="text-small font-bold"><%= date %></span>
 
+  <% holidays = Holidays.on(date, Setting.first.holiday_region.downcase.to_sym) %>
+  <% unless holidays.empty? %>
+    <span class="bg-blue-600 rounded text-white px-4 py-2"><%= holidays.map { |h| h[:name] }.join(" ") %></span>
+  <% end %>
+
   <% (calendar_events[date] || []).each do |calendar_event| %>
     <span class="bg-<%= calendar_event.color %>-700 rounded text-white px-4 py-2"><%= calendar_event.description %></span>
   <% end %>
