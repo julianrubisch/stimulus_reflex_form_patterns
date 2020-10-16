@@ -1,4 +1,4 @@
-<%= form_with(model: calendar_event, class: "m-8") do |form| %>
+<%= form_with(model: calendar_event, class: "m-8", data: {action: "calendar-events#submit", target: "calendar-events.form", resource: Rails.application.message_verifier("calendar_events").generate("CalendarEvent")}) do |form| %>
   <% if calendar_event.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(calendar_event.errors.count, "error") %> prohibited this calendar_event from being saved:</h2>
