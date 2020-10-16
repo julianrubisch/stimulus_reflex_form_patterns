@@ -12,7 +12,7 @@ class CalendarEventsReflex < ApplicationReflex
 
   private
 
-  def calendar_event_params
+  def submit_params
     params.require(:calendar_event).permit(:occurs_at, :description, :color)
   end
 
