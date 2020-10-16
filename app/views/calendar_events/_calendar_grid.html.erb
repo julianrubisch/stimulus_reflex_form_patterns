@@ -1,0 +1,4 @@
+<% Date::DAYNAMES.each do |name| %>
+  <div class="bg-gray-500 text-white p-3"><%= name %></div>
+<% end %>
+<%= render partial: "date", collection: dates, locals: { calendar_events: calendar_events } %>
