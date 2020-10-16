@@ -30,7 +30,7 @@ class CalendarEventsController < ApplicationController
 
     if @calendar_event.save
       @calendar_events = CalendarEvent.where(occurs_at: @date_range).order(:occurs_at).group_by(&:occurs_at_date)
-      StreamCalendarEventsJob.perform_now(dates: @dates, calendar_events: @calendar_events)
+      StreamCalendarEventsJob.perform_now(dates: @dates, calendar_events: @calendar_events, date_range: @date_range)
     else
       render :index
     end
